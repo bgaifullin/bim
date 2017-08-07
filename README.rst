@@ -1,6 +1,9 @@
 Banking Module
 ==============
 
+.. image:: https://travis-ci.org/bgaifullin/bim.svg?branch=master
+    :target: https://travis-ci.org/bgaifullin/bim
+
 The test project which shows how to use wsql [1]_  and wsql-sdk [2]_  to build complicated system by using
 mysql or mariadb with unit-tests and without any kind of ORM.
 
