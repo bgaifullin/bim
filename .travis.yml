@@ -1,0 +1,27 @@
+sudo: false
+language: python
+
+python:
+  - "3.4"
+  - "3.5"
+
+env:
+ - MYSQL_DATABASE=bim_test MYSQL_USER=root
+
+before_install:
+  - pip install -U pip setuptools
+  - pip install -r requirements.txt
+  - pip install pytest wsql_sdk pyparsing
+
+install:
+  - pip install .
+
+before_script:
+  - wsql-trans src/scheme/bank.sql -d DEBUG:1 -d DB_NAME:bim_test | mysql -u root
+  - wsql-trans src/scheme/bank.sql | wsql-codegen -l python3_aio -o bim/models --sep '::'
+
+script:
+ - py.test tests
+
+notifications:
+  email: false
